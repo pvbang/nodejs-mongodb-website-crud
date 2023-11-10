@@ -15,7 +15,16 @@ app.use(express.static("assets"));
 app.get('/', async(req, res) => {
     const products = await Product.find({});
     res.render("index", {products: products});
-    // res.send('Nodejs - MongoDB - Website- CRUD')
+})
+
+app.get('/add', async(req, res) => {
+    res.render("add");
+})
+
+app.get('/edit/:id', async(req, res) => {
+    const {id} = req.params;
+    const product = await Product.findById(id);
+    res.render("edit", {product: product});
 })
 
 app.get('/products', async(req, res) => {
