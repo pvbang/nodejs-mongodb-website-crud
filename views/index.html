@@ -130,36 +130,7 @@
                     </tr>
                   </thead>
                   <tbody class="table-border-bottom-0">
-                    <% for(let i=0; i < products.length; i++) { %>
-                      <tr>
-                        <td><strong>
-                            <%= products[i]._id %>
-                          </strong></td>
-                        <td>
-                          <%= products[i].name %>
-                        </td>
-                        <td>
-                          <%= products[i].quantity %>
-                        </td>
-                        <td><span class="badge bg-label-primary me-1">
-                            <%= products[i].price %>
-                          </span></td>
-                        <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="/edit/<%= products[i]._id %>"><i class="bx bx-edit-alt me-1"></i>
-                                Sửa</a>
-                              <button class="dropdown-item" type="button"
-                                onclick="deleteProduct('<%= products[i]._id %>')"><i class="bx bx-trash me-1"></i>
-                                Xóa</button>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                      <% } %>
+                    
                   </tbody>
                 </table>
               </div>
