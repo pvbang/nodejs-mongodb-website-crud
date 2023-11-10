@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require("body-parser");
+var path = require('path');
 
 const Product = require('./models/product')
 const app = express()
@@ -8,15 +9,20 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-// app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views")); 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("assets"));
+app.use(express.static(__dirname + '/views'));
 
-app.get('/', async(req, res) => {
-    const products = await Product.find({});
-    res.render("index", {products: products});
-})
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
+// app.set("view engine", "ejs");
+// app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.static("assets"));
+
+// app.get('/', async(req, res) => {
+//     const products = await Product.find({});
+//     res.render("index", {products: products});
+// })
 
 app.get('/add', async(req, res) => {
     res.render("add");
