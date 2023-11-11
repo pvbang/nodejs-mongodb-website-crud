@@ -3,12 +3,13 @@ const mongoose = require('mongoose')
 const bodyParser = require("body-parser");
 var path = require('path');
 
-const Product = require('./models/product')
+const Product = require('./models/product');
+const { log } = require('console');
 const app = express()
 
-// app.use(express.json())
-// app.use(express.urlencoded({extended: false}))
-// app.use(express.static("public"));
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+app.use(express.static("public"));
 
 app.use(express.static(__dirname + '/views'));
 
@@ -29,14 +30,6 @@ app.get('/add', async(req, res) => {
 })
 
 app.get('/edit/:id', async(req, res) => {
-    const {id} = req.params;
-    // const product = await Product.findById(id);
-    // res.render("edit", {product: product});
-
-    var now = new Date();
-    now.setFullYear(now.getFullYear() + 1);
-    document.cookie = "id=" + id + "; expires=" + now.toUTCString() + "; path=/";
-
     res.sendFile(path.join(__dirname, 'views', 'edit.html'));
 })
 
@@ -62,6 +55,7 @@ app.get('/product/:id', async(req, res) =>{
 // add
 app.post('/product', async(req, res) => {
     console.log("add product");
+    console.log(req.body);
     try {
         const product = await Product.create(req.body)
         res.status(200).json(product);
@@ -76,6 +70,8 @@ app.post('/product', async(req, res) => {
 app.put('/product/:id', async(req, res) => {
     try {
         const {id} = req.params;
+        console.log(id);
+        console.log(req.body);
         const product = await Product.findByIdAndUpdate(id, req.body);
         if(!product){
             return res.status(404).json({message: `Không tìm thấy product ID = ${id}`})

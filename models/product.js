@@ -4,16 +4,16 @@ const productSchema = mongoose.Schema(
     {
         name: {
             type: String,
-            required: [true, "Nhập tên product"]
+            required: false
         },
         quantity: {
             type: Number,
-            required: true,
+            required: false,
             default: 0
         },
         price: {
             type: Number,
-            required: true,
+            required: false,
         },
     },
     {
