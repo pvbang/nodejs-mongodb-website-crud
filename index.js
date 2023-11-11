@@ -1,67 +1,23 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require("body-parser");
-const fs = require('fs').promises;
 var path = require('path');
 
 const Product = require('./models/product')
 const app = express()
 
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
+// app.use(express.json())
+// app.use(express.urlencoded({extended: false}))
+// app.use(express.static("public"));
 
 app.use(express.static(__dirname + '/views'));
 
-// app.get('/', function(req, res) {
-//     res.sendFile(path.join(__dirname, 'views', 'index.html'));
-// });
-
 app.get('/', async (req, res) => {
-    try {
-        const products = await Product.find({});
-        const indexPath = path.join(__dirname, 'views', 'index.html');
-
-        // Read the HTML file
-        let htmlContent = await fs.readFile(indexPath, 'utf-8');
-
-        // Replace the placeholder with the actual product data
-        const productsHtml = products.map(product => `
-            <tr>
-                <td><strong>${product._id}</strong></td>
-                <td>${product.name}</td>
-                <td>${product.quantity}</td>
-                <td><span class="badge bg-label-primary me-1">${product.price}</span></td>
-                <td>
-                    <div class="dropdown">
-                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                            <i class="bx bx-dots-vertical-rounded"></i>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/edit/${product._id}">
-                                <i class="bx bx-edit-alt me-1"></i> Sửa
-                            </a>
-                            <button class="dropdown-item" type="button" onclick="deleteProduct('${product._id}')">
-                                <i class="bx bx-trash me-1"></i> Xóa
-                            </button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        `).join('');
-
-        htmlContent = htmlContent.replace('<!-- {{products}} will be replaced with the actual product data -->', productsHtml);
-
-        // Send the modified HTML content
-        res.send(htmlContent);
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
 // app.set("view engine", "ejs");
 // app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(express.static("assets"));
 
 // app.get('/', async(req, res) => {
 //     const products = await Product.find({});
@@ -69,13 +25,19 @@ app.get('/', async (req, res) => {
 // })
 
 app.get('/add', async(req, res) => {
-    res.render("add");
+    res.sendFile(path.join(__dirname, 'views', 'add.html'));
 })
 
 app.get('/edit/:id', async(req, res) => {
     const {id} = req.params;
-    const product = await Product.findById(id);
-    res.render("edit", {product: product});
+    // const product = await Product.findById(id);
+    // res.render("edit", {product: product});
+
+    var now = new Date();
+    now.setFullYear(now.getFullYear() + 1);
+    document.cookie = "id=" + id + "; expires=" + now.toUTCString() + "; path=/";
+
+    res.sendFile(path.join(__dirname, 'views', 'edit.html'));
 })
 
 app.get('/products', async(req, res) => {
@@ -99,6 +61,7 @@ app.get('/product/:id', async(req, res) =>{
 
 // add
 app.post('/product', async(req, res) => {
+    console.log("add product");
     try {
         const product = await Product.create(req.body)
         res.status(200).json(product);

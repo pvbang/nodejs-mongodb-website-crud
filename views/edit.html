@@ -198,6 +198,9 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 
   <script>
+    const idValue = getCookie("id");
+    console.log(idValue);
+
     async function editProduct(id) {
       var name = document.getElementById('name').value;
       var quantity = document.getElementById('quantity').value;
