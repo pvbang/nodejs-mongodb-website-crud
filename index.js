@@ -54,7 +54,6 @@ app.get('/product/:id', async(req, res) =>{
 
 // add
 app.post('/product', async(req, res) => {
-    console.log("add product");
     console.log(req.body);
     try {
         const product = await Product.create(req.body)
@@ -98,6 +97,24 @@ app.delete('/product/:id', async(req, res) =>{
         res.status(500).json({message: error.message})
     }
 })
+
+// search
+app.get('/search', async(req, res) => {
+    try {
+        const { query } = req.query;
+        let conditions = [{ name: { $regex: query, $options: 'i' } }];
+        if (mongoose.Types.ObjectId.isValid(query)) {
+            conditions.push({ _id: query });
+        }
+        const products = await Product.find({ $or: conditions });
+        res.status(200).json(products);
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+});
+
+
+
 
 mongoose.set("strictQuery", false)
 mongoose.

@@ -8,46 +8,34 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-  <title>Nodejs MongoDB</title>
+  <title>Group7 - Nodejs MongoDB</title>
 
   <meta name="description" content="" />
 
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="https://childrex.com/assets/sneat/img/favicon/favicon.ico" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
     rel="stylesheet" />
 
-  <!-- Icons. Uncomment required icon fonts -->
   <link rel="stylesheet" href="https://childrex.com/assets/sneat/vendor/fonts/boxicons.css" />
 
-  <!-- Core CSS -->
   <link rel="stylesheet" href="https://childrex.com/assets/sneat/vendor/css/core.css" class="template-customizer-core-css" />
   <link rel="stylesheet" href="https://childrex.com/assets/sneat/vendor/css/theme-default.css" class="template-customizer-theme-css" />
   <link rel="stylesheet" href="https://childrex.com/assets/sneat/css/demo.css" />
 
-  <!-- Vendors CSS -->
   <link rel="stylesheet" href="https://childrex.com/assets/sneat/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
-  <!-- Page CSS -->
-
-  <!-- Helpers -->
   <script src="https://childrex.com/assets/sneat/vendor/js/helpers.js"></script>
 
-  <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-  <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
   <script src="https://childrex.com/assets/sneat/js/config.js"></script>
 </head>
 
 <body>
-  <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
-      <!-- Menu -->
 
       <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
         <!-- <div class="app-brand demo">
@@ -79,12 +67,8 @@
           </li>
         </ul>
       </aside>
-      <!-- / Menu -->
 
-      <!-- Layout container -->
       <div class="layout-page">
-        <!-- Navbar -->
-
         <nav
           class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
           id="layout-navbar">
@@ -95,24 +79,17 @@
           </div>
 
           <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-            <!-- Search -->
             <div class="navbar-nav align-items-center">
               <div class="nav-item d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19.023 16.977a35.13 35.13 0 0 1-1.367-1.384c-.372-.378-.596-.653-.596-.653l-2.8-1.337A6.962 6.962 0 0 0 16 9c0-3.859-3.14-7-7-7S2 5.141 2 9s3.14 7 7 7c1.763 0 3.37-.66 4.603-1.739l1.337 2.8s.275.224.653.596c.387.363.896.854 1.384 1.367l1.358 1.392l.604.646l2.121-2.121l-.646-.604c-.379-.372-.885-.866-1.391-1.36zM9 14c-2.757 0-5-2.243-5-5s2.243-5 5-5s5 2.243 5 5s-2.243 5-5 5z"/></svg>
                 <input type="text" class="form-control border-0 shadow-none" placeholder="Tìm kiếm..."
-                  aria-label="Tìm kiếm..." />
+                  aria-label="Tìm kiếm..." style="width:600px"/>
               </div>
             </div>
-            <!-- /Search -->
           </div>
         </nav>
 
-        <!-- / Navbar -->
-
-        <!-- Content wrapper -->
         <div class="content-wrapper">
-          <!-- Content -->
-
           <div class="container-xxl flex-grow-1 container-p-y">
             <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Sản phẩm /</span> Danh sách sản phẩm</h4>
 
@@ -130,50 +107,30 @@
                     </tr>
                   </thead>
                   <tbody class="table-border-bottom-0" id="table-body">
-                    <!-- products here -->
                     
                   </tbody>
                 </table>
               </div>
-              <!-- <h6></h6> -->
             </div>
-            <!--/ Basic Bootstrap Table -->
 
           </div>
-          <!-- / Content -->
 
           <div class="content-backdrop fade"></div>
         </div>
-        <!-- Content wrapper -->
       </div>
-      <!-- / Layout page -->
     </div>
 
-    <!-- Overlay -->
     <div class="layout-overlay layout-menu-toggle"></div>
   </div>
-  <!-- / Layout wrapper -->
 
-  <!-- Core JS -->
-  <!-- build:js assets/vendor/js/core.js -->
   <script src="https://childrex.com/assets/sneat/vendor/libs/jquery/jquery.js"></script>
   <script src="https://childrex.com/assets/sneat/vendor/libs/popper/popper.js"></script>
   <script src="https://childrex.com/assets/sneat/vendor/js/bootstrap.js"></script>
   <script src="https://childrex.com/assets/sneat/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
   <script src="https://childrex.com/assets/sneat/vendor/js/menu.js"></script>
-  <!-- endbuild -->
-
-  <!-- Vendors JS -->
-
-  <!-- Main JS -->
   <script src="https://childrex.com/assets/sneat/js/main.js"></script>
-
-  <!-- Page JS -->
-
-  <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-
   
   <script>
     const tableBody = document.getElementById("table-body");
@@ -192,37 +149,34 @@
         var products = await response.json();
         console.log(products);
 
-        
-
         products.forEach(product => {
 
-        tableContent += `
-            <tr>
-              <td><strong>${product._id}</strong></td>
-                <td>${product.name}</td>
-                <td>${product.quantity}</td>
-                <td><span class="badge bg-label-primary me-1">${product.price}</span></td>
-                <td>
-                    <div class="dropdown">
-                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2z"/></svg>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/edit/${product._id}">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3l1.587 1.585l-1.59 1.584l-1.586-1.585l1.589-1.584zM6 16v-1.585l7.04-7.018l1.586 1.586L7.587 16H6zm-2 4h16v2H4z"/></svg>&nbsp; Sửa
-                            </a>
-                            <button class="dropdown-item" type="button" onclick="deleteProduct('${product._id}')">
-                              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"/><path fill="currentColor" d="M9 10h2v8H9zm4 0h2v8h-2z"/></svg>&nbsp; Xóa
-                            </button>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        `;
-    });
+          tableContent += `
+              <tr>
+                <td><strong>${product._id}</strong></td>
+                  <td>${product.name}</td>
+                  <td>${product.quantity}</td>
+                  <td><span class="badge bg-label-primary me-1">${product.price}</span></td>
+                  <td>
+                      <div class="dropdown">
+                          <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2z"/></svg>
+                          </button>
+                          <div class="dropdown-menu">
+                              <a class="dropdown-item" href="/edit/${product._id}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3l1.587 1.585l-1.59 1.584l-1.586-1.585l1.589-1.584zM6 16v-1.585l7.04-7.018l1.586 1.586L7.587 16H6zm-2 4h16v2H4z"/></svg>&nbsp; Sửa
+                              </a>
+                              <button class="dropdown-item" type="button" onclick="deleteProduct('${product._id}')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"/><path fill="currentColor" d="M9 10h2v8H9zm4 0h2v8h-2z"/></svg>&nbsp; Xóa
+                              </button>
+                          </div>
+                      </div>
+                  </td>
+              </tr>
+          `;
+      });
 
-    tableBody.innerHTML = tableContent.replace(/\\n/g, "<br>");
-
+      tableBody.innerHTML = tableContent.replace(/\\n/g, "<br>");
 
       } catch (error) {
         console.error('Error:', error.message);
@@ -249,6 +203,46 @@
     }
 
     getProducts();
+  </script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+  $('input[type="text"]').on('input', function(e){
+    var query = $(this).val();
+    $.get(`http://localhost:3000/search?query=${query}`, function(data, status){
+      // Xóa nội dung hiện tại của bảng
+      $('#table-body').empty();
+
+      // Thêm từng sản phẩm tìm được vào bảng
+      data.forEach(product => {
+        $('#table-body').append(`
+          <tr>
+            <td><strong>${product._id}</strong></td>
+            <td>${product.name}</td>
+            <td>${product.quantity}</td>
+            <td><span class="badge bg-label-primary me-1">${product.price}</span></td>
+            <td>
+              <div class="dropdown">
+                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 10c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2z"/></svg>
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="/edit/${product._id}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M19.045 7.401c.378-.378.586-.88.586-1.414s-.208-1.036-.586-1.414l-1.586-1.586c-.378-.378-.88-.586-1.414-.586s-1.036.208-1.413.585L4 13.585V18h4.413L19.045 7.401zm-3-3l1.587 1.585l-1.59 1.584l-1.586-1.585l1.589-1.584zM6 16v-1.585l7.04-7.018l1.586 1.586L7.587 16H6zm-2 4h16v2H4z"/></svg>&nbsp; Sửa
+                  </a>
+                  <button class="dropdown-item" type="button" onclick="deleteProduct('${product._id}')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M5 20a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8h2V6h-4V4a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v2H3v2h2zM9 4h6v2H9zM8 8h9v12H7V8z"/><path fill="currentColor" d="M9 10h2v8H9zm4 0h2v8h-2z"/></svg>&nbsp; Xóa
+                  </button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        `);
+      });
+    });
+  });
+});
   </script>
 
 </body>

@@ -8,9 +8,14 @@ npm i nodemon -D
 npm i mongodb
 npm i ejs
 
+# run
 npm run dev
 ```
 
+### Vercel
+```
+https://nodejs-mongodb-website-crud.vercel.app/
+```
 ## Dev: Phan Văn Bằng
 ###### Facebook: fb.com/it0902
 ###### Github: github.com/pvbang
